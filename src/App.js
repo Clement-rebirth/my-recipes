@@ -1,24 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from './providers/UserProvider';
+import { getAuth, signOut } from 'firebase/auth';
+import Manager from './services/firebase/Manager';
 
-function App() {
+import { Link } from 'react-router-dom';
+import Loading from './components/Loading/Loading';
+
+import './App.scss';
+
+const App = () => {
+
+  const [recipes, setRecipes] = useState('loading');
+
+  let { user, setUser, userData } = useContext(UserContext);
+
+  useEffect(() => {
+    let recipeManager = new Manager('recipes');
+
+    recipeManager.getAll(snapshot => {
+      let data = snapshot.val();
+      setRecipes(data);
+    });
+  }, []);
+
+  const handleSignOut = () => {
+    const auth = getAuth();
+
+    signOut(auth)
+      .then(() => setUser(false))
+      .catch(error => console.error(error));
+  };
+
+  if (user === 'loading' || userData === 'loading' || recipes === 'loading') return <Loading />;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1>Mes recettes</h1>
+
+      <footer>
+        <p>Made by <span className='name'>Clément</span></p>
+        <div className='admin'>
+          { user 
+              ? <button className='sign-out' onClick={handleSignOut}>Déconnexion</button> 
+              : <Link to='/admin'>Admin</Link>
+          }
+        </div>
+      </footer>
     </div>
   );
 }
