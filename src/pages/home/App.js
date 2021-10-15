@@ -42,6 +42,14 @@ const App = () => {
         { user && <Link to='/add-recipe'>+ Add recipe</Link> }
       </div>
 
+      <div className='recipes'>
+        {Object.keys(recipes).map(key => (
+          <div key={key} className='recipe'>
+            <h3>{ recipes[key].title }</h3>
+          </div>
+        ))}
+      </div>
+
       <footer>
         <p>Made by <span className='name'>Clément</span></p>
         <div className='admin'>
