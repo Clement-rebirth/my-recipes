@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from './providers/UserProvider';
+import { UserContext } from '../../providers/UserProvider';
 import { getAuth, signOut } from 'firebase/auth';
-import Manager from './services/firebase/Manager';
+import Manager from '../../services/firebase/Manager';
 
 import { Link } from 'react-router-dom';
-import Loading from './components/Loading/Loading';
+import Loading from '../../components/Loading/Loading';
 
 import './App.scss';
 
@@ -34,8 +34,13 @@ const App = () => {
   if (user === 'loading' || userData === 'loading' || recipes === 'loading') return <Loading />;
 
   return (
-    <div className="app">
-      <h1>Mes recettes</h1>
+    <div className='app container'>
+      <h1>My recipes</h1>
+
+      <div className='wrap'>
+        <h2>Liste des recettes</h2>
+        { user && <Link to='/add-recipe'>+ Add recipe</Link> }
+      </div>
 
       <footer>
         <p>Made by <span className='name'>Clément</span></p>

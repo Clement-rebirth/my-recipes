@@ -4,9 +4,10 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import App from './App';
-import Login from './components/Login/Login';
+import App from './pages/home/App';
+import Login from './pages/login/Login';
 import UserProvider from './providers/UserProvider';
+import AddRecipe from './pages/addRecipe/AddRecipe';
 
 import './index.scss';
 
@@ -20,6 +21,9 @@ ReactDOM.render(
             </Route>
             <Route path={['/admin', '/login']}>
               <Login />
+            </Route>
+            <Route path='/add-recipe'>
+              <AddRecipe />
             </Route>
             <Route>
               <Redirect to='/' />

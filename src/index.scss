@@ -1,3 +1,154 @@
+/* VARIABLES */
+
+$main-color: #E58363;
+
+$main-bg-color: #ffffff;
+$second-bg-color: #e2e7ee;
+
+$main-text-color: #343D42; /* High-emphasis text */
+$secondary-text-color: rgb(136, 152, 163); /* Medium-emphasis text */
+$tertiary-text-color: rgba(255, 255, 255, 0.38); /* Disabled text */
+$light-text-color: #fff;
+$dark-text-color: #212529;
+
+$invalid-color: #c0392b;
+$danger-color: #c95959;
+$valid-color: #239B56;
+
+$text-size: 1.1rem;
+$h1-size: 3.05rem;
+$h2-size: 2.44rem;
+$h3-size: 1.95rem;
+
+$text-weight: 400;
+$bold-text-weight: 700;
+$big-title-weight: 700;
+$title-weight: 600;
+
+$text-font: 'Nunito', sans-serif;
+$title-font: 'Nunito', sans-serif;
+
+$main-border-radius: 12px;
+
+
+/* END CSS VARIABLES */
+
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
+  background-color: $main-bg-color;
+  color: $main-text-color;
+}
+
+p, a, label, input, button, div, small, textarea, input {
+  font-family: $text-font;
+}
+
+h1, .h1 {
+  color: $main-text-color;
+  font-family: $title-font;
+  font-weight: $big-title-weight;
+  font-size: $h1-size;
+}
+
+h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: $title-weight;
+  color: $main-text-color;
+  font-family: $title-font;
+}
+
+h2, .h2 {
+  font-size: $h2-size;
+}
+
+h3, .h3 {
+  font-size: $h3-size;
+}
+
+p {
+  font-size: $text-size;
+  font-weight: $text-weight;
+  color: $main-text-color;
+}
+
+button {
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+b, strong {
+  font-weight: $bold-text-weight;
+}
+
+.d-none {
+  display: none;
+}
+
+.btn {
+  border-radius: 6px;
+  padding: 7px 6px;
+  transition-duration: 0.3s;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: $main-color;
+  color: $dark-text-color;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  border: 1px solid #000;
+}
+
+.container {
+  padding: 5px 15px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* form */
+
+input, button, textarea {
+  box-sizing: border-box;
+  outline: none;
+  border: 1px solid black;
+}
+
+input:focus,
+button:focus,
+textarea:focus {
+  border-color: $main-color;
+}
+
+form input,
+form textarea {
+  font-size: 1rem;
+  width: 100%;
+}
+
+form label {
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 3px;
+}
+
+form > button {
+  width: 100%;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media all and (max-width: 1024px) {
+  .container {
+    max-width: 600px;
+  }
 }
