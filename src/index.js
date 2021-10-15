@@ -8,6 +8,7 @@ import App from './pages/home/App';
 import Login from './pages/login/Login';
 import UserProvider from './providers/UserProvider';
 import AddRecipe from './pages/addRecipe/AddRecipe';
+import Recipe from './pages/Recipe/Recipe';
 
 import './index.scss';
 
@@ -24,6 +25,9 @@ ReactDOM.render(
             </Route>
             <Route path='/add-recipe'>
               <AddRecipe />
+            </Route>
+            <Route path='/recette/:slug'>
+              <Recipe />
             </Route>
             <Route>
               <Redirect to='/' />

@@ -5,6 +5,7 @@ import Manager from '../../services/firebase/Manager';
 
 import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
+import RecipeCard from './RecipeCard';
 
 import './App.scss';
 
@@ -44,9 +45,11 @@ const App = () => {
 
       <div className='recipes'>
         {Object.keys(recipes).map(key => (
-          <div key={key} className='recipe'>
-            <h3>{ recipes[key].title }</h3>
-          </div>
+          <RecipeCard
+            key={key}
+            title={recipes[key].title}
+            imageName={recipes[key].imageName}
+            slug={recipes[key].slug} />
         ))}
       </div>
 
