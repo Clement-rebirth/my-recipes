@@ -50,6 +50,7 @@ const App = () => {
               ? <button className='sign-out' onClick={handleSignOut}>Déconnexion</button> 
               : <Link to='/admin'>Admin</Link>
           }
+          { user && <Link to='/categories'>Catégories</Link> }
         </div>
       </footer>
     </div>

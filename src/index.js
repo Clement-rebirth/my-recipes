@@ -11,6 +11,7 @@ import AddRecipe from './pages/addRecipe/AddRecipe';
 import Recipe from './pages/Recipe/Recipe';
 import RecipesProvider from './providers/RecipesProvider';
 import EditRecipe from './pages/editRecipe/EditRecipe';
+import Categories from './pages/categories/Categories';
 
 import './index.scss';
 
@@ -39,6 +40,9 @@ ReactDOM.render(
             <RecipesProvider>
               <Recipe />
             </RecipesProvider>
+          </Route>
+          <Route path='/categories'>
+            <Categories />
           </Route>
           <Route>
             <Redirect to='/' />
