@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../../providers/UserProvider';
 import { getAuth, signOut } from 'firebase/auth';
-import Manager from '../../services/firebase/Manager';
+import { RecipesContext } from '../../providers/RecipesProvider';
 
 import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading/Loading';
@@ -11,18 +11,8 @@ import './App.scss';
 
 const App = () => {
 
-  const [recipes, setRecipes] = useState('loading');
-
   let { user, setUser, userData } = useContext(UserContext);
-
-  useEffect(() => {
-    let recipeManager = new Manager('recipes');
-
-    recipeManager.getAll(snapshot => {
-      let data = snapshot.val();
-      setRecipes(data);
-    });
-  }, []);
+  let { recipes } = useContext(RecipesContext);
 
   const handleSignOut = () => {
     const auth = getAuth();

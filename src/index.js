@@ -9,6 +9,8 @@ import Login from './pages/login/Login';
 import UserProvider from './providers/UserProvider';
 import AddRecipe from './pages/addRecipe/AddRecipe';
 import Recipe from './pages/Recipe/Recipe';
+import RecipesProvider from './providers/RecipesProvider';
+import EditRecipe from './pages/editRecipe/EditRecipe';
 
 import './index.scss';
 
@@ -16,24 +18,33 @@ ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
       <Router>
-          <Switch>
-            <Route exact path='/'>
+        <Switch>
+          <Route exact path='/'>
+            <RecipesProvider>
               <App />
-            </Route>
-            <Route path={['/admin', '/login']}>
-              <Login />
-            </Route>
-            <Route path='/add-recipe'>
-              <AddRecipe />
-            </Route>
-            <Route path='/recette/:slug'>
+            </RecipesProvider>
+          </Route>
+          <Route path={['/admin', '/login']}>
+            <Login />
+          </Route>
+          <Route path='/add-recipe'>
+            <AddRecipe />
+          </Route>
+          <Route path='/edit/:slug'>
+            <RecipesProvider>
+              <EditRecipe />
+            </RecipesProvider>
+          </Route>
+          <Route path='/recette/:slug'>
+            <RecipesProvider>
               <Recipe />
-            </Route>
-            <Route>
-              <Redirect to='/' />
-            </Route>
-          </Switch>
-        </Router>
+            </RecipesProvider>
+          </Route>
+          <Route>
+            <Redirect to='/' />
+          </Route>
+        </Switch>
+      </Router>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
