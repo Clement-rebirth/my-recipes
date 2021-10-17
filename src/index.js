@@ -42,7 +42,9 @@ ReactDOM.render(
             </RecipesProvider>
           </Route>
           <Route path='/categories'>
-            <Categories />
+            <RecipesProvider>
+              <Categories />
+            </RecipesProvider>
           </Route>
           <Route>
             <Redirect to='/' />
