@@ -1,22 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Manager from '../../services/firebase/Manager';
 
 const RecipeActions = ({ recipe }) => {
 
-  const editRecipe = () => {};
+  const confirmDelete = onConfirm => {
+    let text;
+    let quit = false;
+    let wordToEnter = 'oui';
 
-  const deleteRecipe = () => {};
+    do {
+      text = prompt(`
+        Êtes-vous sûr de vouloir supprimer la recette "${recipe.title}" ?
+        (cette action est irréversible !)
+        Écrivez "${wordToEnter}" pour confirmer :
+      `);
+
+      if (text === null) quit = true; // user cliked "cancel" button
+
+      if (text === wordToEnter) deleteRecipe();
+    } while (!quit && text !== wordToEnter);
+  };
+
+  const deleteRecipe = () => {
+    let recipeManager = new Manager(`recipes/${recipe.id}`);
+    recipeManager.delete(() => alert('La recette a bien été supprimée.'));
+  };
 
   return (
     <div className='recipe-actions'>
       <Link
         to={`/edit/${recipe.slug}`}
         id='edit-recipe'
-        onClick={editRecipe}
       >
           <span className="material-icons-round">edit</span>
       </Link>
-      <button id='delete-recipe' onClick={deleteRecipe}><span className="material-icons-round">delete</span></button>
+      <button id='delete-recipe' onClick={confirmDelete}><span className="material-icons-round">delete</span></button>
     </div>
   );
 };
