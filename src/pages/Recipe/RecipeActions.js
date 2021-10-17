@@ -1,3 +1,4 @@
+import { deleteObject, getStorage, ref } from '@firebase/storage';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Manager from '../../services/firebase/Manager';
@@ -23,6 +24,14 @@ const RecipeActions = ({ recipe }) => {
   };
 
   const deleteRecipe = () => {
+    // if the recipe has an image we delete it
+    if (recipe.imageName) {
+      const storage = getStorage();
+      const imageRef = ref(storage, `recipe-images/${recipe.imageName}`);
+
+      deleteObject(imageRef).catch(error => console.error(error));
+    }
+
     let recipeManager = new Manager(`recipes/${recipe.id}`);
     recipeManager.delete(() => alert('La recette a bien été supprimée.'));
   };
