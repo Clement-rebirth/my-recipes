@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../../providers/UserProvider';
 import { RecipesContext } from '../../providers/RecipesProvider';
+import remarkGfm from 'remark-gfm';
 
 import Loading from '../../components/Loading/Loading';
 import RecipeActions from './RecipeActions';
+import ReactMarkdown from 'react-markdown';
 
 const Recipe = () => {
 
@@ -29,14 +31,18 @@ const Recipe = () => {
 
       <div className='ingredients'>
         <h2>Ingédients</h2>
-        { recipe.ingredients }
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ h1: 'h3', h2: 'h4', h3: 'h5' }}>
+          { recipe.ingredients }
+        </ReactMarkdown>
       </div>
 
       <div className='separator'></div>
 
       <div className='recipe-content'>
         <h2>Préparation</h2>
-        { recipe.content }
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ h1: 'h3', h2: 'h4', h3: 'h5' }}>
+          { recipe.content }
+        </ReactMarkdown>
       </div>
     </div>
   );
