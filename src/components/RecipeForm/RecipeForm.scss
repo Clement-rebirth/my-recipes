@@ -1,4 +1,4 @@
-.edit-recipe {
+.edit-recipe, .add-recipe {
   label[for="image"] {
     margin-top: 25px;
   }
@@ -21,5 +21,27 @@
 
   textarea#content {
     height: 600px;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .edit-recipe, .add-recipe {
+    h1 {
+      font-size: 2.7rem;
+      line-height: 120%;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media all and (max-width: 500px) {
+  .edit-recipe, .add-recipe {
+    .image-preview {
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+    }
   }
 }

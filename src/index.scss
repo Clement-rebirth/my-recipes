@@ -85,7 +85,7 @@ b, strong {
 }
 
 .container {
-  padding: 5px 15px;
+  padding: 5px 55px;
   margin: 0 auto;
   max-width: 800px;
 }
@@ -143,6 +143,18 @@ form textarea::placeholder {
 
 @media all and (max-width: 1024px) {
   .container {
-    max-width: 600px;
+    max-width: 700px;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .container {
+    padding: 5px 35px;
+  }
+}
+
+@media all and (max-width: 400px) {
+  .container {
+    padding: 5px 25px;
   }
 }
