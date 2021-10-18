@@ -1,0 +1,25 @@
+.edit-recipe {
+  label[for="image"] {
+    margin-top: 25px;
+  }
+
+  #image {
+    margin-bottom: 10px;
+  }
+
+  .image-preview {
+    width: 400px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  textarea#ingredients {
+    height: 300px;
+  }
+
+  textarea#content {
+    height: 600px;
+  }
+}

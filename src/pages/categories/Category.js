@@ -78,7 +78,7 @@ const Category = ({ category }) => {
         <button className='edit-category' onClick={() => setShowEditForm(true)}>
           <span className='material-icons-round'>edit</span>
         </button>
-        <button className='delete-list' onClick={confirmDelete}>
+        <button className='delete-category' onClick={confirmDelete}>
           <span className='material-icons-round'>delete_outline</span>
         </button>
       </div>

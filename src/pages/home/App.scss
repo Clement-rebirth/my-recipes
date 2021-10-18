@@ -1,0 +1,105 @@
+@import '../../variables';
+@import 'SearchBar';
+
+.app {
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h1 {
+      color: $main-color;
+      font-size: 2.3rem;
+      display: flex;
+      align-items: center;
+
+      .logo {
+        margin-right: 6px;
+        width: 45px;
+      }
+    }
+  }
+
+  .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .btn {
+      font-size: 1.1rem;
+      padding: 8px 12px;
+    }
+  }
+
+  .recipes {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: center;
+
+    $horizontal-gap: 35px;
+
+    gap: 35px $horizontal-gap;
+
+    .recipe {
+      cursor: pointer;
+      // box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+      border-radius: $main-border-radius;
+      flex: 0 0 calc(50% - (#{$horizontal-gap} / 2));
+      box-sizing: border-box;
+      display: flex;
+      height: 350px;
+      background: #f5f5f5 center/cover no-repeat;
+      position: relative;
+
+      &.no-image:before {
+        content: '\e3f4';
+        font-family: 'Material Icons Round';
+        color: rgb(223, 223, 223);
+        font-style: normal;
+        font-weight: 400;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+      }
+
+      .recipe-title {
+        align-self: flex-end;
+        margin: 15px auto;
+        color: #fff;
+        padding: 0 15px;
+      }
+    }
+  }
+
+  footer {
+    background-color: $main-color;
+    padding: 15px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: $main-border-radius;
+    margin: 50px 0 30px;
+    font-size: $text-size;
+    
+    p {
+      color: #fff;
+    }
+
+    .admin {
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .sign-out {
+        color: #fff;
+        background-color: transparent;
+        border: none;
+        margin-right: 12px;
+      }
+    }
+  }
+}

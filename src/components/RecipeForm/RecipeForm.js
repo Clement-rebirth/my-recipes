@@ -5,6 +5,8 @@ import Manager from '../../services/firebase/Manager';
 import { slugify } from '../../services/slugify';
 import { useHistory } from 'react-router';
 
+import './RecipeForm.scss';
+
 const RecipeForm = ({ recipe }) => {
 
   const DEFAULT_DATA = {

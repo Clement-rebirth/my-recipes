@@ -7,6 +7,8 @@ import Loading from '../../components/Loading/Loading';
 import RecipeActions from './RecipeActions';
 import ReactMarkdown from 'react-markdown';
 
+import './Recipe.scss';
+
 const Recipe = () => {
 
   let { user } = useContext(UserContext);
@@ -15,7 +17,7 @@ const Recipe = () => {
   if (recipes === 'loading' || recipe === 'loading' || !recipe) return <Loading />;
 
   return (
-    <div className='show-recipe container'>
+    <div className={`show-recipe container ${recipe.imageName ? '' : 'no-image'}`}>
       <div className='recipe-header'>
         <h1>{ recipe.title }</h1>
         { user && <RecipeActions recipe={recipe} /> }
@@ -35,8 +37,6 @@ const Recipe = () => {
           { recipe.ingredients }
         </ReactMarkdown>
       </div>
-
-      <div className='separator'></div>
 
       <div className='recipe-content'>
         <h2>Préparation</h2>

@@ -1,0 +1,67 @@
+@import '../../variables';
+
+.show-recipe {
+  .recipe-header {
+    display: flex;
+
+    .recipe-actions {
+      display: flex;
+      align-items: center;
+      margin-left: 25px;
+
+      a, button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+        padding: 7px;
+        border-radius: 50%;
+  
+        span {
+          font-size: 24px;
+        }
+  
+        &#edit-recipe {
+          $edit-recipe-color: rgb(52, 152, 219);
+          color: rgb(52, 152, 219);
+          text-decoration: none;
+          margin-right: 10px;
+          background-color: rgba($edit-recipe-color, 0.15);
+        }
+  
+        &#delete-recipe {
+          color: $danger-color;
+          background-color: rgba($danger-color, 0.15);
+        }
+      }
+    }
+  }
+
+  .recipe-image img {
+    width: 100%;
+    border-radius: $main-border-radius;
+  }
+
+  .ingredients, .recipe-content {
+    li, p, a, div {
+      font-size: 1.2rem;
+      line-height: 150%;
+    }
+
+    h3 {
+      font-size: 1.56rem;
+      font-weight: 700;
+      margin: 35px 0 10px;
+    }
+
+    h4 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+  }
+}

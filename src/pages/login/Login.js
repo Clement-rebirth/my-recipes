@@ -36,7 +36,7 @@ const Login = () => {
   if (typeof user === 'object') return <Redirect to='/' />;
 
   return (
-    <div className='container'>
+    <div className='container login'>
       <div className='login'>
         <h1>Login</h1>
 

@@ -4,6 +4,8 @@ import Manager from '../../services/firebase/Manager';
 import Loading from '../../components/Loading/Loading';
 import Category from './Category';
 
+import './Categories.scss';
+
 const Categories = () => {
 
   const [categories, setCategories] = useState('loading');
@@ -46,6 +48,8 @@ const Categories = () => {
       <div className='separator'></div>
 
       <div className='category-form'>
+        <h2>Ajouter une catégorie</h2>
+
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor='name'>Nom de la catégorie</label>

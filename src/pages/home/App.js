@@ -11,6 +11,7 @@ import SearchBar from './SearchBar';
 import NothingToShow from '../../components/NothingToShow/NothingToShow';
 
 import noResultFoundImg from '../../assets/img/undraw-lost-online.svg';
+import logo from '../../assets/img/logo.svg';
 
 import './App.scss';
 
@@ -54,13 +55,13 @@ const App = () => {
   return (
     <div className='app container'>
       <div className='top'>
-        <h1>My recipes</h1>
+        <h1><img src={logo} alt='logo' className='logo' />My recipes</h1>
         <SearchBar search={search} setSearch={setSearch} />
       </div>
 
       <div className='wrap'>
-        <h2>Liste des recettes</h2>
-        { user && <Link to='/add-recipe'>+ Add recipe</Link> }
+        <h2 className='h1'>Liste des recettes</h2>
+        { user && <Link className='btn btn-outline-primary' to='/add-recipe'>+ Add recipe</Link> }
       </div>
 
       { noSearchResult && 
@@ -72,14 +73,16 @@ const App = () => {
         />
       }
         
-      { recipesToShow && Object.keys(recipesToShow).map(key => (
-        <RecipeCard
-          key={key}
-          title={recipesToShow[key].title}
-          imageName={recipesToShow[key].imageName}
-          slug={recipesToShow[key].slug}
-        />
-      ))}
+      <div className='recipes'>
+        { recipesToShow && Object.keys(recipesToShow).map(key => (
+          <RecipeCard
+            key={key}
+            title={recipesToShow[key].title}
+            imageName={recipesToShow[key].imageName}
+            slug={recipesToShow[key].slug}
+          />
+        ))}
+      </div>
 
       <footer>
         <p>Made by <span className='name'>Clément</span></p>

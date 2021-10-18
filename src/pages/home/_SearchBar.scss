@@ -10,8 +10,11 @@
   padding: 12px 50px 12px 20px;
   border-radius: 50px;
   font-size: 1rem;
-  color: var(--main-text-color);
-  background-color: var(--tertiary-bg-color);
+  color: $main-text-color;
+  background-color: white;
+  border: none;
+  box-sizing: border-box;
+  box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
 }
 
 .search-bar .clear-search,
@@ -23,12 +26,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.75);
+  color: #6b7280;
 }
 
 .search-bar input::placeholder,
 .search-bar #search-icon {
-  color: rgba(255, 255, 255, 0.5);
+  color: #6b7280;
 }
 
 .search-bar #search-icon {
@@ -39,6 +42,7 @@
 
 .search-bar .clear-search {
   right: 10px;
+  border: none;
 }
 
 @media all and (max-width: 580px) {

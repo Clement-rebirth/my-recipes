@@ -1,0 +1,56 @@
+@import '../../variables';
+
+.categories {
+  .category {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $main-bg-color;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    padding: 8px 5px 8px 12px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e9e9e9;
+  
+    p {
+      text-overflow: ellipsis;
+      margin: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      font-size: $text-size;
+    }
+  
+    .actions {
+      flex-shrink: 0;
+      display: flex;
+      margin-left: 15px;
+  
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: none;
+  
+        span {
+          font-size: 1.4rem;
+        }
+  
+        &.edit-category {
+          color: #3498DB;
+        }
+  
+        &.delete-category {
+          color: $danger-color;
+        }
+      }
+    }
+  }
+
+  .category-form {
+    h2 {
+      margin: 45px 0 25px;
+    }
+  }
+}
