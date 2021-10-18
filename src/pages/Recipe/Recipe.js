@@ -32,7 +32,7 @@ const Recipe = () => {
       }
 
       <div className='ingredients'>
-        <h2>Ingédients</h2>
+        <h2>Ingrédients</h2>
         <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ h1: 'h3', h2: 'h4', h3: 'h5' }}>
           { recipe.ingredients }
         </ReactMarkdown>
