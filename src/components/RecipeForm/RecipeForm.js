@@ -125,15 +125,15 @@ const RecipeForm = ({ recipe }) => {
       let recipeManager = new Manager(`recipes/${recipe.id}`);
 
       recipeManager
-      .update(recipeFormData)
-      .then(() => history.replace('/'));
+        .update(recipeFormData)
+        .then(() => history.replace(`/recette/${recipeFormData.slug}`));
     } else {
       // create
       let recipeManager = new Manager('recipes');
 
       recipeManager
         .add(recipeFormData)
-        .then(() => history.replace('/'));
+        .then(() => history.replace(`/recette/${recipeFormData.slug}`));
     }
   };
 
