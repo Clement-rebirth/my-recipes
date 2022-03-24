@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../providers/UserProvider';
 import { RecipesContext } from '../../providers/RecipesProvider';
 import remarkGfm from 'remark-gfm';
+import logo from '../../assets/img/logo.svg';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 import Loading from '../../components/Loading/Loading';
 import RecipeActions from './RecipeActions';
@@ -18,6 +20,11 @@ const Recipe = () => {
 
   return (
     <div className={`show-recipe container ${recipe.imageName ? '' : 'no-image'}`}>
+
+      <Link to='/' className='top'>
+        <p><img src={logo} alt='logo' className='logo' />My recipes</p>
+      </Link>
+
       <div className='recipe-header'>
         <h1>{ recipe.title }</h1>
         { user && <RecipeActions recipe={recipe} /> }

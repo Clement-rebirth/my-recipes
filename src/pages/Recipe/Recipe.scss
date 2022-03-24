@@ -1,6 +1,25 @@
 @import '../../variables';
 
 .show-recipe {
+  .top {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    p {
+      color: $main-color;
+      font-size: 2.3rem;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+
+      .logo {
+        margin-right: 6px;
+        width: 45px;
+      }
+    }
+  }
+
   .recipe-header {
     display: flex;
     justify-content: space-between;
@@ -80,6 +99,19 @@
   }
 }
 
+@media all and (max-width: 700px) {
+  .show-recipe {
+    .top p {
+      font-size: 2rem;
+      margin: 15px 0;
+    }
+
+    .recipe-header {
+      margin-top: 15px;
+    }
+  }
+}
+
 @media all and (max-width: 650px) {
   .show-recipe {
     h1 {
@@ -104,7 +136,14 @@
 }
 
 @media all and (max-width: 450px) {
-  .show-recipe h1 {
-    font-size: 2rem;
+  .show-recipe {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .top p {
+      font-size: 1.8rem;
+      margin: 15px 0;
+    }
   }
 }
