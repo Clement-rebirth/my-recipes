@@ -4,6 +4,7 @@ import { getStorage, ref, uploadBytes, deleteObject } from 'firebase/storage';
 import Manager from '../../services/firebase/Manager';
 import { slugify } from '../../services/slugify';
 import { useHistory } from 'react-router';
+import { off } from 'firebase/database';
 
 import './RecipeForm.scss';
 
@@ -20,6 +21,8 @@ const RecipeForm = ({ recipe }) => {
 
   const [categories, setCategories] = useState('loading');
   const [recipeFormData, setRecipeFormData] = useState(DEFAULT_DATA);
+  const [previewImageSrc, setPreviewImageSrc] = useState(false);
+  const [oldImageName, setOldImageName] = useState(false);
 
   useEffect(() => {
     // recipe is loading or we're not in edit mode
@@ -33,7 +36,13 @@ const RecipeForm = ({ recipe }) => {
       ingredients: recipe.ingredients,
       content: recipe.content
     });
-  }, [recipe])
+
+    setOldImageName(recipe.imageName);
+    
+    if (recipe.imageName) {
+      setPreviewImageSrc(`https://firebasestorage.googleapis.com/v0/b/my-recipes-5f5d6.appspot.com/o/recipe-images%2F${recipe.imageName}?alt=media`);
+    }
+  }, [recipe]);
   
   let history = useHistory();
   let fileInputRef = useRef(null);
@@ -45,6 +54,8 @@ const RecipeForm = ({ recipe }) => {
       let data = snapshot.val();
       setCategories(data);
     });
+
+    return () => off(categoryManager.ref);
   }, []);
 
   const handleChange = e => {
@@ -62,40 +73,47 @@ const RecipeForm = ({ recipe }) => {
   };
 
   const handleImageChange = e => {
-    let file = fileInputRef.current.files[0];
-
-    // if file size is more than 1mo
-    if (file.size > 1024000) {
-      alert(`L'image ne doit pas dépasser 1mo`);
-      return;
-    }
-
-    const storage = getStorage();
-    const recipeImagesFolderName = 'recipe-images';
-
-    // if an image has already been uploaded
-    if (recipeFormData.imageName) {
-      const oldRecipeImageRef = ref(storage, `${recipeImagesFolderName}/${recipeFormData.imageName}`);
-
-      deleteObject(oldRecipeImageRef)
-        .then(() => setRecipeFormData({ ...recipeFormData, imageName: false }))
-        .catch(error => console.error(error));
-    }
-
-    const recipeImageRef = ref(storage, `${recipeImagesFolderName}/${file.name}`);
-
-    uploadBytes(recipeImageRef, file)
-      .then(snapshot => {
-        setRecipeFormData({ ...recipeFormData, imageName: snapshot.metadata.name })
-      })
-      .catch(error => {
-        console.error(error);
-        return;
-      });
+    setPreviewImageSrc(URL.createObjectURL(e.target.files[0]));
+    setRecipeFormData({ ...recipeFormData, imageName: e.target.files[0].name });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    let file = fileInputRef.current.files[0];
+
+    // if an image has been uploaded
+    if (file) {
+
+      // if file size is more than 1mo
+      if (file.size > 1024000) {
+        alert(`L'image ne doit pas dépasser 1mo`);
+        return;
+      }
+
+      const storage = getStorage();
+      const recipeImagesFolderName = 'recipe-images';
+
+      // if an image has already been uploaded
+      if (oldImageName) {
+        const oldRecipeImageRef = ref(storage, `${recipeImagesFolderName}/${oldImageName}`);
+
+        deleteObject(oldRecipeImageRef)
+          .then(() => setRecipeFormData({ ...recipeFormData, imageName: false }))
+          .catch(error => console.error(error));
+      }
+
+      const recipeImageRef = ref(storage, `${recipeImagesFolderName}/${file.name}`);
+
+      uploadBytes(recipeImageRef, file)
+        .then(snapshot => {
+          setRecipeFormData({ ...recipeFormData, imageName: snapshot.metadata.name })
+        })
+        .catch(error => {
+          console.error(error);
+          return;
+        });
+    }
 
     if (recipeFormData.slug !== slugify(recipeFormData.slug)) {
       alert('Slug invalide');
@@ -144,10 +162,10 @@ const RecipeForm = ({ recipe }) => {
           <input type='file' name='image' id='image' ref={fileInputRef} onChange={handleImageChange} />
         </div>
 
-        { recipeFormData.imageName && 
+        { previewImageSrc && 
           <div className='image-preview'>
             <img 
-              src={`https://firebasestorage.googleapis.com/v0/b/my-recipes-5f5d6.appspot.com/o/recipe-images%2F${recipeFormData.imageName}?alt=media`}
+              src={previewImageSrc}
               alt={recipeFormData.imageName} />
           </div>
         }
